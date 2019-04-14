@@ -1,4 +1,13 @@
-import {ADD_QUANTITY, ADD_TO_CART, PRODUCT_FETCH_SUCCESS, REMOVE_ITEM, SUB_QUANTITY, FETCH_PRODUCT, ADD_PRODUCT} from "../actions/ActionTypes";
+import {
+  ADD_QUANTITY,
+  ADD_TO_CART,
+  PRODUCT_FETCH_SUCCESS,
+  REMOVE_ITEM,
+  SUB_QUANTITY,
+  FETCH_PRODUCT,
+  ADD_PRODUCT,
+  DELETE_PRODUCT
+} from "../actions/ActionTypes";
 import {combineReducers} from 'redux'
 import ProductService from "../service/ProductService";
 import React from "react";
@@ -14,7 +23,7 @@ let initSate = {
   products_best: [],
   addedItems:initAddedItems,
   total: initTotal,
-  // all_product : []
+  all_product : []
 }
 
 export const productReducer = (state=initSate, action) => {
@@ -22,11 +31,23 @@ export const productReducer = (state=initSate, action) => {
     //admin-----------
     case FETCH_PRODUCT :
       return Object.assign({}, state, action.products)
+    case DELETE_PRODUCT:
+      var update_item = state.all_product.filter(product=>product.id!=action.id);
+      console.log(update_item);
+      return {
+        ...state,
+        all_product:update_item
+      }
     case ADD_PRODUCT:
       return {
         ...state,
-        all_product : [action.product]
+        all_product : [...state.all_product,action.product]
       }
+
+
+    /******
+    client
+     ******/
     case PRODUCT_FETCH_SUCCESS :
       return Object.assign({}, state, action.products)
     case ADD_TO_CART :
