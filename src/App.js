@@ -25,10 +25,10 @@ import OrderSucess from "./components/order/OrderSucess";
 import Admin from "./components/admin/Admin";
 import BillAdmin from "./components/admin/BillAdmin";
 import CustomerAdmin from "./components/admin/CustomerAdmin";
-import ProductAdmin from "./components/admin/ProductAdmin";
+import ProductAdmin from "./components/admin/product/ProductAdmin";
 import SignIn from './components/admin/SignIn';
-import ProductExist from "./components/admin/ProductExist";
-import ProductSold from "./components/admin/ProductSold";
+import ProductExist from "./components/admin/product/ProductExist";
+import ProductSold from "./components/admin/product/ProductSold";
 import CheckProduct from "./components/order/CheckProduct";
 import ContactForm from './components/order/ContactForm';
 

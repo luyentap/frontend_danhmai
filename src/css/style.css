@@ -449,92 +449,92 @@ end the common
       text-align: center;
       color: white; }
 
-.modal {
-  position: fixed;
-  /* Stay in place */
-  z-index: 999;
-  /* Sit on top */
-  padding-top: 100px;
-  /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%;
-  /* Full width */
-  height: 100%;
-  /* Full height */
-  overflow: auto;
-  /* Enable scroll if needed */
-  background-color: black;
-  /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4);
-  /* Black w/ opacity */ }
-  .modal__close {
-    position: absolute;
-    top: 10%;
-    left: 50%;
-    -webkit-transform: translateX(-50%);
-    transform: translateX(-50%);
-    font-size: 40px;
-    font-weight: 300;
-    color: white; }
+/*.modal {*/
+  /*position: fixed;*/
+  /*!* Stay in place *!*/
+  /*z-index: 999;*/
+  /*!* Sit on top *!*/
+  /*padding-top: 100px;*/
+  /*!* Location of the box *!*/
+  /*left: 0;*/
+  /*top: 0;*/
+  /*width: 100%;*/
+  /*!* Full width *!*/
+  /*height: 100%;*/
+  /*!* Full height *!*/
+  /*overflow: auto;*/
+  /*!* Enable scroll if needed *!*/
+  /*background-color: black;*/
+  /*!* Fallback color *!*/
+  /*background-color: rgba(0, 0, 0, 0.4);*/
+  /*!* Black w/ opacity *! }*/
+  /*.modal__close {*/
+    /*position: absolute;*/
+    /*top: 10%;*/
+    /*left: 50%;*/
+    /*-webkit-transform: translateX(-50%);*/
+    /*transform: translateX(-50%);*/
+    /*font-size: 40px;*/
+    /*font-weight: 300;*/
+    /*color: white; }*/
 
-/* Modal Content */
-.modal-content {
-  background: url("../img/home/Ellipse 7.jpg");
-  background-position: center;
-  background-size: cover;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  border-radius: 50%;
-  overflow: hidden;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  width: 400px;
-  height: 400px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  text-align: center;
-  white-space: nowrap; }
-  .modal-content h3 {
-    font-weight: 500;
-    margin: 20px; }
-  .modal-content p {
-    font-weight: 400;
-    font-size: 12px;
-    margin: 20px; }
-  .modal-content input {
-    border: solid 1px #ccc;
-    border-radius: 15px;
-    width: 200px;
-    height: 30px;
-    margin: 20px; }
-  .modal-content a {
-    font-size: 14px;
-    font-weight: 500;
-    color: black;
-    text-decoration: underline; }
+/*!* Modal Content *!*/
+/*.modal-content {*/
+  /*background: url("../img/home/Ellipse 7.jpg");*/
+  /*background-position: center;*/
+  /*background-size: cover;*/
+  /*margin: auto;*/
+  /*padding: 20px;*/
+  /*border: 1px solid #888;*/
+  /*border-radius: 50%;*/
+  /*overflow: hidden;*/
+  /*position: absolute;*/
+  /*top: 50%;*/
+  /*left: 50%;*/
+  /*-webkit-transform: translate(-50%, -50%);*/
+  /*transform: translate(-50%, -50%);*/
+  /*width: 400px;*/
+  /*height: 400px;*/
+  /*display: -webkit-box;*/
+  /*display: -ms-flexbox;*/
+  /*display: flex;*/
+  /*-webkit-box-orient: vertical;*/
+  /*-webkit-box-direction: normal;*/
+  /*-ms-flex-direction: column;*/
+  /*flex-direction: column;*/
+  /*-webkit-box-pack: center;*/
+  /*-ms-flex-pack: center;*/
+  /*justify-content: center;*/
+  /*-webkit-box-align: center;*/
+  /*-ms-flex-align: center;*/
+  /*align-items: center;*/
+  /*text-align: center;*/
+  /*white-space: nowrap; }*/
+  /*.modal-content h3 {*/
+    /*font-weight: 500;*/
+    /*margin: 20px; }*/
+  /*.modal-content p {*/
+    /*font-weight: 400;*/
+    /*font-size: 12px;*/
+    /*margin: 20px; }*/
+  /*.modal-content input {*/
+    /*border: solid 1px #ccc;*/
+    /*border-radius: 15px;*/
+    /*width: 200px;*/
+    /*height: 30px;*/
+    /*margin: 20px; }*/
+  /*.modal-content a {*/
+    /*font-size: 14px;*/
+    /*font-weight: 500;*/
+    /*color: black;*/
+    /*text-decoration: underline; }*/
 
-/* The Close Button */
-.close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold; }
+/*!* The Close Button *!*/
+/*.close {*/
+  /*color: #aaaaaa;*/
+  /*float: right;*/
+  /*font-size: 28px;*/
+  /*font-weight: bold; }*/
 
 .intro {
   display: -webkit-box;
@@ -1665,6 +1665,8 @@ end the common
     -ms-flex-direction: column;
     flex-direction: column; }
     .list-content__body .product {
+      border-bottom: solid 1px #b5b5b5;
+      padding-bottom: 8px;
       display: grid;
       -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
@@ -1679,6 +1681,7 @@ end the common
       .list-content__body .product img:first-child {
         -o-object-fit: cover;
         object-fit: cover;
+        width: 100%;
         padding-bottom: 2px;
         border-bottom: dotted 2px #ccc;
         margin-right: 20px; }
@@ -1706,11 +1709,12 @@ end the common
           font-weight: 500;
           margin: 20px 0; }
         .list-content__body .product__detail__button button {
-          padding: 14px;
+          padding: 8px;
           margin: 10px 2px;
           border-radius: 15px;
           border: solid 1px #ccc;
           font-weight: bold;
+          font-size: 15px;
           background: transparent; }
           .list-content__body .product__detail__button button:nth-child(2) {
             background: #789629; }

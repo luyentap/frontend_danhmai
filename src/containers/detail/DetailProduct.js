@@ -11,10 +11,6 @@ class DetailProduct extends Component{
     return (
       <div className="detail-product">
         <div className="detail-img">
-          <div className="detail-img__list"><img src="../img/detail/03_Detail_03.jpg"/><img
-            src="../img/detail/Layer 80.jpg"/><img src="../img/detail/Layer 82.jpg"/><img
-            src="../img/detail/Layer 83.jpg"/><img src="../img/detail/Layer 84.jpg"/><img
-            src="../img/detail/03_Detail_07.jpg"/></div>
           <img className="detail-img__product" src={product && product.img}/></div>
         <div className="detail-description"><h5 className="detail-description__name">{product && product.name}</h5>
           <p className="detail-description__code">{product && product.brand}</p>

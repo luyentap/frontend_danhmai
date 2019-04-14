@@ -1,6 +1,6 @@
 import Request from "../common/Axios";
 
-const apiURL = 'http://localhost:84/saomai/product/';
+const apiURL = 'http://localhost/php-rest-api/product/';
 class ProductService {
   static createProduct(data) {
     return Request.post("products", data);

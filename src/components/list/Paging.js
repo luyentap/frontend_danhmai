@@ -21,7 +21,7 @@ export default class Paging extends Component {
           <a href="list.html"><i className="fa fa-list-ul"></i></a>
         </div>
         <p className="list-content__head__paging">
-          <i className="fa fa-caret-left" onClick={this.degrease()}> </i>
+          <i className="fa fa-caret-left" onClick={(e)=>this.degrease()}> </i>
           {pageNumbers.map(number => <span id={number}
                                            onClick={(e)=>this.handleChange(e)}>{number}</span>)}
           <i className="fa fa-caret-right" onClick={(e)=>this.increase(e)}></i>

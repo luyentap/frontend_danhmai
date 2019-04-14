@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { addProduct } from '../../actions/ActionCreaters';
+import { addProduct } from '../../../actions/ActionCreaters';
 import * as axios from 'axios'
 class OpenClose extends React.Component {
     constructor(props) {

@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import MenuAdmin from "./MenuAdmin"
+import MenuAdmin from "../MenuAdmin"
 
-export default class ProductExist extends Component {
+export default class ProductSold extends Component {
   render() {
     return (
-        <div>
+      <div>
         <div className="container gridpage">
         <MenuAdmin/>
-        ProductExist
+        ProductSold
         </div>      
       </div>
     );
