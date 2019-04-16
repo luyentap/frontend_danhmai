@@ -1,16 +1,15 @@
 import React, {Component} from 'react';
 import MenuAdmin from "../MenuAdmin"
-import ProductItem from "./ProductItem"
+import Customer from './Customer';
 
-export default class ProductAdmin extends Component {
+export default class CustomerAdmin extends Component {
   render() {
     return (
+      <div>
 
-      <div >
-        abc
         <div className="container gridpage">
           <MenuAdmin/>
-          <ProductItem/>
+          <Customer/>
         </div>
       </div>
     );

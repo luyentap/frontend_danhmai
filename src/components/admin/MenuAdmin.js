@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 export default class MenuAdmin extends Component {
     render() {
       return (
-        <div className="sidebar-grid">
+        <div className="sidebar-grid menu-admin">
           <div className="sidebar-grid__item">
           <h2 className="sidebar-grid__item__header"><i className="fa fa-bars"></i>  ADMIN</h2>
           <div className="sidebar-grid__item__body">
@@ -15,7 +15,7 @@ export default class MenuAdmin extends Component {
               <i className="fa fa-caret-down"></i></div>
             <div className="list">
               <ul>
-                <li><Link to="/admin_custormer">Quản lý khách hàng</Link></li>
+                <li><Link to="/admin_customer">Quản lý khách hàng</Link></li>
               </ul>
               <i className="fa fa-caret-right"></i></div>
             <div className="list">

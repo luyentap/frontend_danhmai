@@ -2201,3 +2201,22 @@ end the common
   100% {
     -webkit-transform: rotateX(0deg);
     transform: rotateX(0deg); } }
+
+.menu-admin{
+  white-space: nowrap;
+}
+.admin,.customer-admin{
+  padding: 20px;
+}
+.admin__title,.customer-admin__title{
+  color:#282c34;
+  font-weight: 500;
+  margin: 20px 0 20px 0;
+}
+
+.admin img{
+  object-fit: cover;
+  width: 20%;
+  height: auto;
+}
+

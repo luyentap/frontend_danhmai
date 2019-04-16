@@ -122,12 +122,11 @@ class ProductItem extends Component {
              aria-hidden="true">
           <div className="modal-dialog" role="document">
             <div className="modal-content">
-              <div className="modal-header"><h5 className="modal-title" id="exampleModalLabel">Delete the candidate</h5>
+              <div className="modal-header"><h5 className="modal-title" id="exampleModalLabel">Xóa sản phẩm</h5>
                 <button className="close" type="button" data-dismiss="modal" aria-label="Close"><span
                   aria-hidden="true">×</span></button>
               </div>
-              <div className="modal-body">Are you want to delete
-                it: {productClick && productClick.name}</div>
+              <div className="modal-body">Bạn muốn xóa sản phẩm này: {productClick && productClick.name}</div>
               <div className="modal-footer">
                 <button className="btn btn-secondary" type="button" data-dismiss="modal"
                         onClick={(e) => this.clickDeleteNo(e)}>Close
@@ -207,12 +206,12 @@ class ProductItem extends Component {
                                                          placeholder="nhập nội dung"/></div>
                   </div>
                   <div className="form-group row"><label className="col-sm-2 col-form-label col-form-label-sm"
-                                                         htmlFor="colFormLabelSm">Color</label>
+                                                         htmlFor="colFormLabelSm">Màu</label>
                     <div className="col-sm-10"><input className="form-control form-control-sm" type="text"
                                                       placeholder="nhâp color"/></div>
                   </div>
                   <div className="form-group row"><label className="col-sm-2 col-form-label col-form-label-sm"
-                                                         htmlFor="colFormLabelSm">size</label>
+                                                         htmlFor="colFormLabelSm">Kích cỡ</label>
                     <div className="col-sm-10"><input className="form-control form-control-sm" type="text"
                                                       placeholder="nhâp size"/></div>
                   </div>

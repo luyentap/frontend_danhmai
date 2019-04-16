@@ -29,8 +29,8 @@ export default class SignIn extends Component {
             <div class="form-style-6" style={form_style}>
             <h1 style={sAdmin}>Admin</h1>
             <form>
-            <p style={font}>Email</p>
-            <input type="email" name="field2" placeholder="Input your Email" style={sInput} onChange={this.handleEmailChange}/>
+            <p style={font}>User</p>
+            <input type="text" name="field2" placeholder="Input your username" style={sInput} onChange={this.handleEmailChange}/>
             <p style={font}>Password</p>
             <input name="field3" placeholder="Input your password" style={sInput}onChange={this.handlePasswordChange}></input>
             <p><a href="#" style={font}>Lost Password ?</a></p>
