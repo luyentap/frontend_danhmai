@@ -7,7 +7,6 @@ export default class ProductAdmin extends Component {
     return (
 
       <div >
-        abc
         <div className="container gridpage">
           <MenuAdmin/>
           <ProductItem/>

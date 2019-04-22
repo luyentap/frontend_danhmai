@@ -43,18 +43,33 @@ class ProductItem extends Component {
     })
   }
 
+  createProduct = (e)=>{
+    let data ={"name":this.name.value,"content":this.content.value,"new_price":this.price.value,"size":this.size.value};
+    console.log("product created",data)
+    fetch("http://localhost/php-rest-api/product/create.php",{
+      method:"POST",
+      body:JSON.stringify(data)
+    })
+      .then(res=>{
+        console.log(res.text());
+        alert("Đã tạo thành công");
+      })
+  }
+
   componentDidMount() {
     fetch("http://localhost/php-rest-api/product/read.php")
       .then(res => {
+        // console.log(res.text())
         return res.json();
       })
       .then(res => {
         console.log("abc", res);
-        this.props.a({"all_product": res.records});
+        this.props.a({"all_product": res});
       })
   }
 
   render() {
+    let idRow =0;
     console.log("product2", this.props.products);
     var {products} = this.props;
     var {idProductClick, productClick} = this.state;
@@ -87,7 +102,7 @@ class ProductItem extends Component {
             <tbody>
             {products && products.map(product =>
               <tr>
-                <td>{product.id}</td>
+                <td>{++idRow}</td>
                 <td>{product.name}
                 </td>
                 <td><img style={styleImg} src={product.img}/></td>
@@ -192,34 +207,34 @@ class ProductItem extends Component {
                 <form className="form">
                   <div className="form-group row"><label className="col-sm-2 col-form-label col-form-label-sm"
                                                          htmlFor="colFormLabelSm">Tên</label>
-                    <div className="col-sm-10"><input className="form-control form-control-sm" type="text"
+                    <div className="col-sm-10"><input ref={(name)=>this.name= name} className="form-control form-control-sm" type="text"
                                                       placeholder="nhập vào tên"/></div>
                   </div>
-                  <div className="form-group row"><label className="col-sm-2 col-form-label col-form-label-sm"
+                  <div className="form-group row"><label ref={(price)=>this.price= price} className="col-sm-2 col-form-label col-form-label-sm"
                                                          htmlFor="colFormLabelSm">Giá</label>
                     <div className="col-sm-10"><input className="form-control form-control-sm" type="text"
                                                       placeholder="nhâp giá"/></div>
                   </div>
                   <div className="form-group row"><label className="col-sm-2 col-form-label col-form-label-sm"
                                                          htmlFor="colFormLabelSm">Nội dung</label>
-                    <div className="col-sm-10"><textarea className="form-control form-control-sm" type="text"
+                    <div className="col-sm-10"><textarea ref={(content)=>this.content= content} className="form-control form-control-sm" type="text"
                                                          placeholder="nhập nội dung"/></div>
                   </div>
-                  <div className="form-group row"><label className="col-sm-2 col-form-label col-form-label-sm"
+                  <div className="form-group row"><label ref={(color)=>this.color= color} className="col-sm-2 col-form-label col-form-label-sm"
                                                          htmlFor="colFormLabelSm">Màu</label>
                     <div className="col-sm-10"><input className="form-control form-control-sm" type="text"
                                                       placeholder="nhâp color"/></div>
                   </div>
                   <div className="form-group row"><label className="col-sm-2 col-form-label col-form-label-sm"
                                                          htmlFor="colFormLabelSm">Kích cỡ</label>
-                    <div className="col-sm-10"><input className="form-control form-control-sm" type="text"
+                    <div className="col-sm-10"><input ref={(size)=>this.size= size} className="form-control form-control-sm" type="text"
                                                       placeholder="nhâp size"/></div>
                   </div>
                 </form>
               </div>
               <div className="modal-footer">
                 <button className="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                <button className="btn btn-success" type="button">Save</button>
+                <button onClick={(e)=>this.createProduct(e)} className="btn btn-success" type="button" data-dismiss="modal">Save</button>
               </div>
             </div>
           </div>

@@ -1,17 +1,29 @@
 import React,{Component} from 'react';
 import {Link} from 'react-router-dom';
-import Table from '../../containers/cart/Table'
+
+import {loadState} from '../../common/LocalSave';
 
 export default class CheckProduct extends Component{
+  constructor(props) {
+    super(props);
+    this.state = {
+      products : loadState("shoppingCart")
+    }
+  }
+
+
+
   render() {
+    const {products} = this.state;
+    let idRow= 0;
     return (
-        <div>
+        <div className="container">
         <div className="link-intro">
           <Link to="/">Home ></Link>
           <Link to="/cart">Giỏ hàng ></Link>
           <Link className="cl-green" to="/cart">Kiểm tra giỏ hàng ></Link>
         </div>
-        <div className="container" style={style.container}>
+        <div className="" style={style.container}>
         <div className="step-payment">
           <div className="step-payment__item bg-yellow" style={style.step_color}>
             <div className="step-payment__item__step">Bước 1:</div>
@@ -29,7 +41,42 @@ export default class CheckProduct extends Component{
       </div>
       <div>
           <div className="shopping-cart">
-          List sp
+            <div className="customer-admin admin">
+              <h5 className="customer-admin__title admin__title"><i className="fa fa-money-bill-wave-alt"></i>Chi tiết đơn hàng  </h5>
+              <div className="table-responsive">
+                <table className="table table-bordered table-hover table-striped table-vcenter text-center">
+                  <thead>
+                  <tr>
+                    <th scope="row">.No </th>
+                    <th scope="row">Tên SP</th>
+                    <th scope="row">Hình ảnh</th>
+                    <th scope="row">Kích thứơc</th>
+                    <th scope="row">Màu sắc</th>
+                    <th scope="row">Số lương</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {products.map(item=>
+                  <tr>
+                    <td>{++idRow}</td>
+                    <td className="visible-lg">
+                      {item.name}
+                    </td>
+                    <td>
+                      <img src={item.img}/>
+                    </td>
+                    <td>Red</td>
+                    <td>100ml</td>
+                    <td><span className="badge badge-danger">{item.quantity}</span></td>
+
+                  </tr>
+                  )}
+
+                  </tbody>
+                </table>
+
+              </div>
+            </div>
             <div className="shopping-cart__button">
               <Link to="/list" style={style.buttonContine}>Tiếp tục mua hàng</Link>
               <Link to="/cart" style={style.buttonContine}>Quay lại giỏ hàng</Link>

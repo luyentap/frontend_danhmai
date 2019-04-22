@@ -1,7 +1,27 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom'
 
 export default class Bill extends Component {
+  constructor(props) {
+    super(props);
+    this.state ={
+      "bill":[]
+    }
+  }
+
+  componentDidMount(){
+    fetch("http://localhost/php-rest-api/order/read.php")
+      .then(res=>{
+        return res.json()
+      })
+      .then(res=>{
+        this.setState({bill:res});
+      })
+  }
   render() {
+    const {bill} = this.state;
+    let idRow =0;
+    console.log("bill",bill)
     return (
       <div className="customer-admin admin">
         <h5 className="customer-admin__title admin__title"><i className="fa fa-money-bill-wave-alt"></i>Quản lý đơn hàng </h5>
@@ -18,47 +38,29 @@ export default class Bill extends Component {
             </tr>
             </thead>
             <tbody>
+
+            {bill.map(item=>
             <tr>
-              <td>1</td>
+              <td>{++idRow}</td>
               <td className="visible-lg">Nguyễn Thị Phương
               </td>
-              <td className="text-danger">455.000 vnđ</td>
-              <td><span >15-04-2019 12:34:34</span></td>
-              <td><span className="badge badge-dark">chưa giao</span></td>
+              <td className="text-danger">{item.total} vnđ</td>
+              <td><span >{item.time}</span></td>
+              <td><span className="badge badge-dark">{item.status}</span></td>
               <td>
                 <div className="btn-group btn-group-xs">
-                  <button className="btn btn-default px-0" data-toggle="modal" data-target="#edit">
-                    <div className="fa fa-eye text-warning"></div>
+                  <button className="btn btn-default px-0">
+                    <Link to={"bill/"+item.id}><i className="fa fa-eye text-warning"></i> </Link>
                   </button>
                 </div>
                 <div className="btn-group btn-group-xs">
-                  <button className="btn btn-default px-0" data-toggle="modal" data-target="#delete">
+                  <button className="btn btn-default px-0" data-toggle="modal" data-target="#edit">
                     <div className="fa fa-trash text-danger"></div>
                   </button>
                 </div>
               </td>
             </tr>
-            <tr>
-              <td>2</td>
-              <td className="visible-lg">Nguyễn Thị Xuân
-              </td>
-              <td className="text-danger">800.000 vnđ</td>
-              <td><span >15-04-2019 12:34:34</span></td>
-              <td><span className="badge badge-warning">đã giao</span>
-              </td>
-              <td>
-                <div className="btn-group btn-group-xs">
-                  <button className="btn btn-default px-0" data-toggle="modal" data-target="#edit">
-                    <div className="fa fa-eye text-warning"></div>
-                  </button>
-                </div>
-                <div className="btn-group btn-group-xs">
-                  <button className="btn btn-default px-0" data-toggle="modal" data-target="#delete">
-                    <div className="fa fa-trash text-danger"></div>
-                  </button>
-                </div>
-              </td>
-            </tr>
+            )}
             </tbody>
           </table>
           <nav aria-label="Page navigation example">
@@ -66,6 +68,8 @@ export default class Bill extends Component {
               <li className="page-item"><a className="page-link" href="#">1</a></li>
             </ul>
           </nav>
+
+
         </div>
       </div>
     );

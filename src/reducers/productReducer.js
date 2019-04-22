@@ -55,28 +55,27 @@ export const productReducer = (state=initSate, action) => {
       var addedItem = state.products_hot.find(item => item.id == action.id);
       //check product is exist
       var existed_item = state.addedItems.find(item => action.id == item.id);
+      //calculator the new total price after adding product
+      var total_price = parseInt( state.total) + parseInt(addedItem.new_price);
       if (existed_item) {
         addedItem.quantity += 1
         return {
           ...state,
-          total: state.total + addedItem.new_price
+          total: total_price
         }
       }
       else {
         addedItem.quantity = 1;
-        //calculator the new total price after adding product
-        let newTotal = state.total + addedItem.new_price
         return {
           ...state,
           addedItems: [...state.addedItems, addedItem],
-          total: newTotal
+          total: total_price
         }
       }
     case REMOVE_ITEM:
       //calculating the total
       var itemToRemove = state.addedItems.find(item => action.id == item.id);
-      let newTotal = state.total - (itemToRemove.price * itemToRemove.quantity);
-
+      let newTotal = state.total - (itemToRemove.new_price * itemToRemove.quantity);
       var new_items = state.addedItems.filter(item => action.id != item.id);
       return {
         ...state,
