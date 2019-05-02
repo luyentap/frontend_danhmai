@@ -31,6 +31,8 @@ export default class Bill extends Component {
             <tr>
               <th scope="row">.No Bill</th>
               <th scope="row">Tên KH</th>
+              <th scope="row">Địa chỉ</th>
+              <th scope="row">Phone</th>
               <th scope="row">Tổng tiền</th>
               <th scope="row">Thời gian đặt</th>
               <th scope="row">Trạng thái</th>
@@ -42,7 +44,11 @@ export default class Bill extends Component {
             {bill.map(item=>
             <tr>
               <td>{++idRow}</td>
-              <td className="visible-lg">Nguyễn Thị Phương
+              <td className="visible-lg">{item.name}
+              </td>
+              <td className="visible-lg">{item.address}
+              </td>
+              <td className="visible-lg">{item.phone}
               </td>
               <td className="text-danger">{item.total} vnđ</td>
               <td><span >{item.time}</span></td>

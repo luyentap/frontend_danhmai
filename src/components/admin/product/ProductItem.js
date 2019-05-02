@@ -1,18 +1,16 @@
 import React, {Component} from 'react';
-import MenuAdmin from "../MenuAdmin";
 import {deleteProduct, fetchProduct} from "../../../actions/ActionCreaters"
 import {connect} from 'react-redux';
-import OpenClose from './OpenClose';
 
 class ProductItem extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      idProductClick: "-1",
-      productClick: null
-    };
-  }
+  changeInputValue = (e) =>{
+    // alert("cjhagne",e)
+    // console.log("change",e.target.name)
+    this.setState({ productClick:{
+      [e.target.name]: e.target.value
+      } });
 
+  }
   clickButtonModal = (e, id) => {
     // e.preventDefault();
     if (this.props.products) {
@@ -31,6 +29,7 @@ class ProductItem extends Component {
       .then(res => {
         console.log(res);
         this.props.deleteProduct(this.state.idProductClick);
+        window.location = "";
         this.setState({
           idProductClick: "-1",
         })
@@ -42,18 +41,89 @@ class ProductItem extends Component {
       idProductClick: "-1",
     })
   }
+  createProduct = (e) => {
+    console.log(this.img.value);
+    fetch("http://uploads.im/api", {
+      method: "POST",
+      body: this.img,
+      headers: {
+        Accept: 'application/json',
+        // Authorization: 'Client-ID dc708f3823b7756'// imgur specific
+      }
+      })
+      .then(res => {
+        return res.json()
+      })
+      .then(res => {
+        console.log(res);
+      })
 
-  createProduct = (e)=>{
-    let data ={"name":this.name.value,"content":this.content.value,"new_price":this.price.value,"size":this.size.value};
-    console.log("product created",data)
-    fetch("http://localhost/php-rest-api/product/create.php",{
-      method:"POST",
-      body:JSON.stringify(data)
+    let data = {
+      "name": this.name.value,
+      "content": this.content.value,
+      "new_price": this.new_price.value,
+      "old_price": this.old_price.value,
+      "size": this.size.value,
+      "color": this.color.value,
+      "category_id":1,
+      "number":0
+    };
+    console.log("product created", data)
+    fetch("http://localhost/php-rest-api/product/create.php", {
+      method: "POST",
+      body: JSON.stringify(data)
     })
-      .then(res=>{
+      .then(res => {
         console.log(res.text());
         alert("Đã tạo thành công");
+        window.location=""
+
+
       })
+  }
+
+  editTheProduct =() =>{
+    let data = {
+      "id":this.state.idProductClick,
+      "name": this.nameUpdate.value,
+      "content": this.contentUpdate.value,
+      "new_price": this.new_priceUpdate.value,
+      "old_price": this.old_priceUpdate.value,
+      "size": this.sizeUpdate.value,
+      "color": this.colorUpdate.value,
+      "category_id":1,
+      "number":0
+    };
+    console.log("product update", data)
+    fetch("http://localhost/php-rest-api/product/update.php", {
+      method: "POST",
+      body: JSON.stringify(data)
+    })
+      .then(res => {
+        console.log(res.text());
+        alert("Đã sửa thành công");
+        window.location=""
+      })
+  }
+  constructor(props) {
+    super(props);
+    this.state = {
+      idProductClick: "-1",
+      productClick: {
+        name:"",
+      }
+    };
+    //use form update (input)
+    // this.state ={
+    //   name:"",
+    //   content:"",
+    //   newPrice:"",
+    //   oldPrice:"",
+    //   img:"",
+    //   idCategory:"",
+    //   color:"",
+    //   size:""
+    // }
   }
 
   componentDidMount() {
@@ -69,7 +139,7 @@ class ProductItem extends Component {
   }
 
   render() {
-    let idRow =0;
+    let idRow = 0;
     console.log("product2", this.props.products);
     var {products} = this.props;
     var {idProductClick, productClick} = this.state;
@@ -158,7 +228,7 @@ class ProductItem extends Component {
              aria-hidden="true">
           <div className="modal-dialog" role="document">
             <div className="modal-content">
-              <div className="modal-header"><h5 className="modal-title" id="deleteLabel">Sửa sản phẩm </h5>
+              <div className="modal-header"><h5 className="modal-title" >Sửa sản phẩm </h5>
                 <button className="close" type="button" data-dismiss="modal" aria-label="Close"><span
                   aria-hidden="true">×</span></button>
               </div>
@@ -166,29 +236,44 @@ class ProductItem extends Component {
                 <form className="form">
                   <div className="form-group row"><label className="col-sm-2 col-form-label col-form-label-sm"
                                                          htmlFor="colFormLabelSm">Tên</label>
-                    <div className="col-sm-10"><input className="form-control form-control-sm" id="colFormLabelSm"
-                                                      type="text" value={productClick && productClick.name}/></div>
+                    <div className="col-sm-10"><input className="form-control form-control-sm" 
+                                                      type="text" defaultValue={(productClick )&& productClick.name} name="name" ref={name=>this.nameUpdate=name}/></div>
                   </div>
                   <div className="form-group row"><label className="col-sm-2 col-form-label col-form-label-sm"
                                                          htmlFor="colFormLabelSm">Hình ảnh</label>
                     <div className="col-sm-10"><img style={styleImg} src={productClick && productClick.img}/></div>
                   </div>
                   <div className="form-group row"><label className="col-sm-2 col-form-label col-form-label-sm"
-                                                         htmlFor="colFormLabelSm">price</label>
-                    <div className="col-sm-10"><input className="form-control form-control-sm" id="colFormLabelSm3"
-                                                      type="text" value={productClick && productClick.new_price}/></div>
+                                                         htmlFor="colFormLabelSm">new price</label>
+                    <div className="col-sm-10"><input ref={val=> this.new_priceUpdate = val} className="form-control form-control-sm" id="colFormLabelSm3"
+                                                      type="text" defaultValue={productClick && productClick.new_price}/></div>
+                  </div>
+                  <div className="form-group row"><label className="col-sm-2 col-form-label col-form-label-sm"
+                                                         htmlFor="colFormLabelSm">old price</label>
+                    <div className="col-sm-10"><input ref={val=>this.old_priceUpdate = val} className="form-control form-control-sm" id="colFormLabelSm3"
+                                                      type="text" defaultValue={productClick && productClick.old_price}/></div>
+                  </div>
+                  <div className="form-group row"><label className="col-sm-2 col-form-label col-form-label-sm"
+                                                         htmlFor="colFormLabelSm">color</label>
+                    <div className="col-sm-10"><input ref={val=>this.colorUpdate = val} className="form-control form-control-sm" id="colFormLabelSm3"
+                                                      type="text" defaultValue={productClick && productClick.color}/></div>
+                  </div>
+                  <div className="form-group row"><label className="col-sm-2 col-form-label col-form-label-sm"
+                                                         htmlFor="colFormLabelSm">size</label>
+                    <div className="col-sm-10"><input ref={val=>this.sizeUpdate = val} className="form-control form-control-sm" id="colFormLabelSm3"
+                                                      type="text" defaultValue={productClick && productClick.size}/></div>
                   </div>
                   <div className="form-group row"><label className="col-sm-2 col-form-label col-form-label-sm"
                                                          htmlFor="colFormLabelSm">Nội dung</label>
-                    <div className="col-sm-10"><textarea className="form-control form-control-sm" id="colFormLabelSm3"
-                                                         type="text" value={productClick && productClick.content}/>
+                    <div className="col-sm-10"><textarea ref={content=>this.contentUpdate = content} className="form-control form-control-sm" id="colFormLabelSm3"
+                                                         type="text" defaultValue={productClick && productClick.content}/>
                     </div>
                   </div>
                 </form>
               </div>
               <div className="modal-footer">
                 <button className="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                <button className="btn btn-success" type="button">Save</button>
+                <button className="btn btn-success" onClick={() => this.editTheProduct()} type="button" data-dismiss="modal">Save</button>
               </div>
             </div>
           </div>
@@ -207,34 +292,53 @@ class ProductItem extends Component {
                 <form className="form">
                   <div className="form-group row"><label className="col-sm-2 col-form-label col-form-label-sm"
                                                          htmlFor="colFormLabelSm">Tên</label>
-                    <div className="col-sm-10"><input ref={(name)=>this.name= name} className="form-control form-control-sm" type="text"
+                    <div className="col-sm-10"><input ref={(name) => this.name = name}
+                                                      className="form-control form-control-sm" type="text"
                                                       placeholder="nhập vào tên"/></div>
                   </div>
-                  <div className="form-group row"><label ref={(price)=>this.price= price} className="col-sm-2 col-form-label col-form-label-sm"
-                                                         htmlFor="colFormLabelSm">Giá</label>
-                    <div className="col-sm-10"><input className="form-control form-control-sm" type="text"
+                  <div className="form-group row"><label className="col-sm-2 col-form-label col-form-label-sm"
+                                                         htmlFor="colFormLabelSm">Giá mới</label>
+                    <div className="col-sm-10"><input ref={(new_price) => this.new_price = new_price}
+                                                      className="form-control form-control-sm" type="text"
+                                                      placeholder="nhâp giá"/></div>
+                  </div>
+                  <div className="form-group row"><label className="col-sm-2 col-form-label col-form-label-sm"
+                                                         htmlFor="colFormLabelSm">Giá cũ</label>
+                    <div className="col-sm-10"><input ref={(old_price) => this.old_price = old_price}
+                                                      className="form-control form-control-sm" type="text"
                                                       placeholder="nhâp giá"/></div>
                   </div>
                   <div className="form-group row"><label className="col-sm-2 col-form-label col-form-label-sm"
                                                          htmlFor="colFormLabelSm">Nội dung</label>
-                    <div className="col-sm-10"><textarea ref={(content)=>this.content= content} className="form-control form-control-sm" type="text"
+                    <div className="col-sm-10"><textarea ref={(content) => this.content = content}
+                                                         className="form-control form-control-sm" type="text"
                                                          placeholder="nhập nội dung"/></div>
                   </div>
-                  <div className="form-group row"><label ref={(color)=>this.color= color} className="col-sm-2 col-form-label col-form-label-sm"
+                  <div className="form-group row"><label className="col-sm-2 col-form-label col-form-label-sm"
+                                                         htmlFor="colFormLabelSm">Hình ảnh</label>
+                    <div className="col-sm-10"><input type="file" ref={(img) => this.img = img}
+                                                      className="form-control form-control-sm"
+                    /></div>
+                  </div>
+                  <div className="form-group row"><label
+                                                         className="col-sm-2 col-form-label col-form-label-sm"
                                                          htmlFor="colFormLabelSm">Màu</label>
-                    <div className="col-sm-10"><input className="form-control form-control-sm" type="text"
-                                                      placeholder="nhâp color"/></div>
+                    <div className="col-sm-10"><input ref={(color) => this.color = color} className="form-control form-control-sm" type="text"
+                                                      placeholder="nhâp color" /></div>
                   </div>
                   <div className="form-group row"><label className="col-sm-2 col-form-label col-form-label-sm"
                                                          htmlFor="colFormLabelSm">Kích cỡ</label>
-                    <div className="col-sm-10"><input ref={(size)=>this.size= size} className="form-control form-control-sm" type="text"
+                    <div className="col-sm-10"><input ref={(size) => this.size = size}
+                                                      className="form-control form-control-sm" type="text"
                                                       placeholder="nhâp size"/></div>
                   </div>
                 </form>
               </div>
               <div className="modal-footer">
                 <button className="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                <button onClick={(e)=>this.createProduct(e)} className="btn btn-success" type="button" data-dismiss="modal">Save</button>
+                <button onClick={(e) => this.createProduct(e)} className="btn btn-success" type="button"
+                        data-dismiss="modal">Save
+                </button>
               </div>
             </div>
           </div>

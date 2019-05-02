@@ -10,7 +10,6 @@ const style ={
   }
 }
 export default class OrderSucess extends Component{
-
   render() {
     return (
       <div>

@@ -41,12 +41,13 @@ export default class ContactForm extends Component {
     let name = this.getName.value;
     let phone = this.getPhoneNumber.value;
     let address = this.getAddress.value;
+    let email = this.getEmail.value;
 
     //get value (cart+total) in localstorage -->init reducer
     let cart = loadState("shoppingCart") || [];
     let total = loadState("total");
 
-    let data = {"shoppingCart": cart,total:total, personal: {name, phone, address},status:0,user_id:0};
+    let data = {"shoppingCart": cart,total:total, name,email,phone,address,status:0,user_id:0};
     console.log("data",data)
     // OrderService.postOrder(data);
     // this.getName.value = "";
@@ -65,6 +66,8 @@ export default class ContactForm extends Component {
   }
 
   render() {
+    const user = loadState("personal");
+
     return (
       <div>
         <div className="container" style={style.container}>
@@ -88,15 +91,19 @@ export default class ContactForm extends Component {
             <h3 className="form__title">THÔNG TIN CÁ NHÂN</h3>
             <div className="form-element">
               <label>Họ và Tên<span className="upper-text">*</span></label>
-              <input className="form-element__name" ref={(input) => this.getName = input}/>
+              <input className="form-element__name" defaultValue={user && user.name} ref={(input) => this.getName = input}/>
+            </div>
+            <div className="form-element">
+              <label>Email<span className="upper-text">*</span></label>
+              <input type="email"  className="form-element__address"  defaultValue={user && user.email} ref={(input) => this.getEmail = input}/>
             </div>
             <div className="form-element">
               <label>Địa chỉ<span className="upper-text">*</span></label>
-              <input className="form-element__address" ref={(input) => this.getAddress = input}/>
+              <input className="form-element__address" defaultValue={user && user.address} ref={(input) => this.getAddress = input}/>
             </div>
             <div className="form-element">
               <label>Điện thoại<span className="upper-text">*</span></label>
-              <input className="form-element__phone" ref={(input) => this.getPhoneNumber = input}/>
+              <input className="form-element__phone" defaultValue={user && user.phone} ref={(input) => this.getPhoneNumber = input}/>
             </div>
             <div className="form-element form-element__button">
               <Link onClick={this.orderProduct} to="/sucess" style={style.button}>Gửi</Link>

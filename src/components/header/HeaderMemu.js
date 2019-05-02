@@ -1,11 +1,22 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import {loadState,saveState} from '../../common/LocalSave';
 
 export  default  class HeaderMenu extends Component{
+  logout =() =>{
+      alert("bạn đã đăng xuất");
+      localStorage.removeItem("personal");
+      window.location = "http://localhost:3000";
+  }
   render() {
+    const user = loadState("personal");
+
+    
+
     return (
       <ul className="header__primary">
         <li><Link to="/">TRANG CHỦ</Link></li>
+        { user && (user.role=="1" && <li><Link to="/admin">TRANG QUẢN TRỊ</Link></li>)}
         <li><Link to="/about">GIỚI THIỆU</Link></li>
         <li className="header__primary__product"><Link to="/list">SẢN PHẨM</Link>
           <div className="menu-product">
@@ -46,7 +57,14 @@ export  default  class HeaderMenu extends Component{
         </li>
         <li><Link to="/blog">TIN TỨC</Link></li>
         <li><Link to="/contact">BẢN ĐỒ</Link></li>
-        <li><Link to="/register">ĐĂNG KÝ</Link></li>
+        {! user&& <li><Link to="/login">ĐĂNG NHẬP</Link></li>}
+        
+        {user&&
+        <li>
+             <button className="bg-white"><i className="fa fa-user" ></i>Xin chào, {user.name}  </button>
+             <a href="" onClick={this.logout}>đăng xuất</a>
+          </li>
+          }
       </ul>
       
     );

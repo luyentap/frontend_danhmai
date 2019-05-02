@@ -13,7 +13,9 @@ import {rootReducer} from "./reducers/rootReducer";
 import List from './components/list/List';
 import Contact from './components/contact/Contact';
 import Blog from './components/blog/Blog';
-import Register from './components/register/Register';
+import Register from './components/user/Register';
+import RegisterSuccess from './components/user/RegisterSuccess';
+import Login from './components/user/Login';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Home from './components/home/Home';
 import About from './components/about/About';
@@ -57,6 +59,8 @@ export default class App extends Component {
               <Route path='/contact' component={Contact}/>
               <Route path='/blog' component={Blog}/>
               <Route path='/register' component={Register}/>
+              <Route path='/register_success' component={RegisterSuccess}/>
+              <Route path='/login' component={Login}/>
               <Route path='/detail/:id' component={PageDetal}/>
               <Route path='/cart' component={PageCart}/>
               <Route path='/order' component={PageOrder}/>
