@@ -42,12 +42,18 @@ export default class ContactForm extends Component {
     let phone = this.getPhoneNumber.value;
     let address = this.getAddress.value;
     let email = this.getEmail.value;
+    let user = loadState("personal");
+    let user_id=0;
+    if(user){
+      user_id=user.id;
+    }
+    
 
     //get value (cart+total) in localstorage -->init reducer
     let cart = loadState("shoppingCart") || [];
     let total = loadState("total");
 
-    let data = {"shoppingCart": cart,total:total, name,email,phone,address,status:0,user_id:0};
+    let data = {"shoppingCart": cart,total:total, name,email,phone,address,status:0,user_id};
     console.log("data",data)
     // OrderService.postOrder(data);
     // this.getName.value = "";

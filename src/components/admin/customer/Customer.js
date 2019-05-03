@@ -1,7 +1,20 @@
 import React, {Component} from 'react';
 
 export default class Customer extends Component {
+  constructor(props){
+    super(props);
+    this.state ={customer:[]};
+  }
+  componentDidMount(){
+    fetch("http://localhost/php-rest-api/user/list.php")
+    .then(res=>res.json())
+    .then(res=>{
+      this.setState({customer:res});
+    })
+  }
   render() {
+    const {customer} = this.state;
+    console.log(customer);
     return (
       <div className="customer-admin admin">
         <h5 className="customer-admin__title admin__title"><i className="fa fa-users"></i>Quản lý khách hàng </h5>
@@ -18,13 +31,14 @@ export default class Customer extends Component {
             </tr>
             </thead>
             <tbody>
+            {customer && customer.map((item,index) =>
             <tr>
-              <td>1</td>
-              <td className="visible-lg">Nguyễn Văn A
+              <td>{index+1}</td>
+              <td className="visible-lg">{item.name}
               </td>
-              <td>01222111222</td>
-              <td><span className="badge badge-warning">123 Hà Huy Tập, An Khê, Thanh Khê, Đà Nẵng</span></td>
-              <td>nguyenvana@gmail.com</td>
+              <td>{item.phone}</td>
+              <td><span className="badge badge-warning">{item.address}</span></td>
+              <td>{item.email}</td>
               <td>
                 <div className="btn-group btn-group-xs">
                   <button className="btn btn-default px-0" data-toggle="modal" data-target="#edit">
@@ -38,172 +52,8 @@ export default class Customer extends Component {
                 </div>
               </td>
             </tr>
-            <tr>
-              <td>2</td>
-              <td className="visible-lg">Nguyễn Thị Xuân
-              </td>
-              <td>079911222</td>
-              <td><span className="badge badge-warning">82/161 Nguyễn Lương Bằng, Phường Hoà Khánh Bắc, Quận Liên Chiểu, Đà Nẵng</span>
-              </td>
-              <td>xuanthinguyen@gmail.com</td>
-              <td>
-                <div className="btn-group btn-group-xs">
-                  <button className="btn btn-default px-0" data-toggle="modal" data-target="#edit">
-                    <div className="fa fa-eye text-warning"></div>
-                  </button>
-                </div>
-                <div className="btn-group btn-group-xs">
-                  <button className="btn btn-default px-0" data-toggle="modal" data-target="#delete">
-                    <div className="fa fa-trash text-danger"></div>
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td className="visible-lg">Nguyễn Thị Phương
-              </td>
-              <td>034111222</td>
-              <td><span
-                className="badge badge-warning">159 Nguyễn Văn Linh, Phường Nam Dương, Quận Hải Châu, Đà Nẵng</span>
-              </td>
-              <td>phuongthinguyen@gmail.com</td>
-              <td>
-                <div className="btn-group btn-group-xs">
-                  <button className="btn btn-default px-0" data-toggle="modal" data-target="#edit">
-                    <div className="fa fa-eye text-warning"></div>
-                  </button>
-                </div>
-                <div className="btn-group btn-group-xs">
-                  <button className="btn btn-default px-0" data-toggle="modal" data-target="#delete">
-                    <div className="fa fa-trash text-danger"></div>
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td className="visible-lg">Trần Văn B
-              </td>
-              <td>079911222</td>
-              <td><span
-                className="badge badge-warning">106 Nguyễn Xuân Khoát, Phường An Hải Bắc, Quận Sơn Trà, Đà Nẵng</span>
-              </td>
-              <td>avanb@gmail.com</td>
-              <td>
-                <div className="btn-group btn-group-xs">
-                  <button className="btn btn-default px-0" data-toggle="modal" data-target="#edit">
-                    <div className="fa fa-eye text-warning"></div>
-                  </button>
-                </div>
-                <div className="btn-group btn-group-xs">
-                  <button className="btn btn-default px-0" data-toggle="modal" data-target="#delete">
-                    <div className="fa fa-trash text-danger"></div>
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>5</td>
-              <td className="visible-lg">Trần Thị Xuân Vinh
-              </td>
-              <td>07991444</td>
-              <td><span
-                className="badge badge-warning">307 Nam Cao, Phường Hoà Khánh Nam, Quận Liên Chiểu, Đà Nẵng</span></td>
-              <td>xuanthinguyen222@gmail.com</td>
-              <td>
-                <div className="btn-group btn-group-xs">
-                  <button className="btn btn-default px-0" data-toggle="modal" data-target="#edit">
-                    <div className="fa fa-eye text-warning"></div>
-                  </button>
-                </div>
-                <div className="btn-group btn-group-xs">
-                  <button className="btn btn-default px-0" data-toggle="modal" data-target="#delete">
-                    <div className="fa fa-trash text-danger"></div>
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td className="visible-lg">Nguyễn Thị Xuân
-              </td>
-              <td>079911222</td>
-              <td><span className="badge badge-warning">123 Hà Huy Tập, An Khê, Thanh Khê, Đà Nẵng</span></td>
-              <td>xuanthinguyen@gmail.com</td>
-              <td>
-                <div className="btn-group btn-group-xs">
-                  <button className="btn btn-default px-0" data-toggle="modal" data-target="#edit">
-                    <div className="fa fa-eye text-warning"></div>
-                  </button>
-                </div>
-                <div className="btn-group btn-group-xs">
-                  <button className="btn btn-default px-0" data-toggle="modal" data-target="#delete">
-                    <div className="fa fa-trash text-danger"></div>
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td className="visible-lg">Nguyễn Thị Xuân
-              </td>
-              <td>079911222</td>
-              <td><span className="badge badge-warning">123 Hà Huy Tập, An Khê, Thanh Khê, Đà Nẵng</span></td>
-              <td>xuanthinguyen@gmail.com</td>
-              <td>
-                <div className="btn-group btn-group-xs">
-                  <button className="btn btn-default px-0" data-toggle="modal" data-target="#edit">
-                    <div className="fa fa-eye text-warning"></div>
-                  </button>
-                </div>
-                <div className="btn-group btn-group-xs">
-                  <button className="btn btn-default px-0" data-toggle="modal" data-target="#delete">
-                    <div className="fa fa-trash text-danger"></div>
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td className="visible-lg">Nguyễn Thị Xuân
-              </td>
-              <td>079911222</td>
-              <td><span className="badge badge-warning">123 Hà Huy Tập, An Khê, Thanh Khê, Đà Nẵng</span></td>
-              <td>xuanthinguyen@gmail.com</td>
-              <td>
-                <div className="btn-group btn-group-xs">
-                  <button className="btn btn-default px-0" data-toggle="modal" data-target="#edit">
-                    <div className="fa fa-eye text-warning"></div>
-                  </button>
-                </div>
-                <div className="btn-group btn-group-xs">
-                  <button className="btn btn-default px-0" data-toggle="modal" data-target="#delete">
-                    <div className="fa fa-trash text-danger"></div>
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td className="visible-lg">Nguyễn Thị Xuân
-              </td>
-              <td>079911222</td>
-              <td><span className="badge badge-warning">123 Hà Huy Tập, An Khê, Thanh Khê, Đà Nẵng</span></td>
-              <td>xuanthinguyen@gmail.com</td>
-              <td>
-                <div className="btn-group btn-group-xs">
-                  <button className="btn btn-default px-0" data-toggle="modal" data-target="#edit">
-                    <div className="fa fa-eye text-warning"></div>
-                  </button>
-                </div>
-                <div className="btn-group btn-group-xs">
-                  <button className="btn btn-default px-0" data-toggle="modal" data-target="#delete">
-                    <div className="fa fa-trash text-danger"></div>
-                  </button>
-                </div>
-              </td>
-            </tr>
+            )}
+        
 
 
             </tbody>

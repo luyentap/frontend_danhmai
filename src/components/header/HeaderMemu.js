@@ -6,7 +6,7 @@ export  default  class HeaderMenu extends Component{
   logout =() =>{
       alert("bạn đã đăng xuất");
       localStorage.removeItem("personal");
-      window.location = "http://localhost:3000";
+      window.location ="http://localhost:3000";
   }
   render() {
     const user = loadState("personal");
@@ -57,13 +57,16 @@ export  default  class HeaderMenu extends Component{
         </li>
         <li><Link to="/blog">TIN TỨC</Link></li>
         <li><Link to="/contact">BẢN ĐỒ</Link></li>
+        {user&&<li><Link to="/listorderbyuser">ĐƠN HÀNG</Link></li>}
         {! user&& <li><Link to="/login">ĐĂNG NHẬP</Link></li>}
         
         {user&&
         <li>
              <button className="bg-white"><i className="fa fa-user" ></i>Xin chào, {user.name}  </button>
              <a href="" onClick={this.logout}>đăng xuất</a>
+
           </li>
+
           }
       </ul>
       

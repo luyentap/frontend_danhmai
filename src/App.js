@@ -24,6 +24,7 @@ import {saveState} from "./common/LocalSave";
 import PageCart from "./components/cart/PageCart";
 import PageOrder from "./components/order/PageOrder";
 import OrderSucess from "./components/order/OrderSucess";
+import ListOrderByUser from "./components/order/ListOrderByUser";
 import Admin from "./components/admin/Admin";
 import BillAdmin from "./components/admin/bill/BillAdmin";
 import ProductAdmin from "./components/admin/product/ProductAdmin";
@@ -67,6 +68,7 @@ export default class App extends Component {
               <Route path='/check' component={CheckProduct}/>
               <Route path='/sucess' component={OrderSucess}/>
               <Route path='/contactform' component={ContactForm}/>
+              <Route path='/listorderbyuser' component={ListOrderByUser}/>
               <Route path='/admin_signin' component={SignIn}/>
               <Route path='/admin' component={Admin}/>
               <Route path='/admin_customer' component={CustomerAdmin}/>
