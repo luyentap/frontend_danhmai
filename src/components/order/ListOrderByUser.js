@@ -21,6 +21,11 @@ export default class ListOrderByUser extends Component{
   render() {
     const {order} = this.state;
     console.log(order);
+
+    const user = loadState("personal");
+      if(!user){
+        window.location="http://localhost:3000";
+      }
     return (
       <div className="customer-admin admin container">
         <h5 className="customer-admin__title admin__title"><i className="fa fa-users"></i>Lịch sử order </h5>

@@ -1,8 +1,12 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom'
-
+import {loadState,saveState} from '../../common/LocalSave';
 export default class MenuAdmin extends Component {
     render() {
+      const user = loadState("personal");
+      if(!user){
+        window.location="http://localhost:3000";
+      }
       return (
         <div className="sidebar-grid menu-admin">
           <div className="sidebar-grid__item">
