@@ -25,6 +25,7 @@ import PageCart from "./components/cart/PageCart";
 import PageOrder from "./components/order/PageOrder";
 import OrderSucess from "./components/order/OrderSucess";
 import ListOrderByUser from "./components/order/ListOrderByUser";
+import ListOrderByUserDetail from "./components/order/ListOrderByUserDetail";
 import Admin from "./components/admin/Admin";
 import BillAdmin from "./components/admin/bill/BillAdmin";
 import ProductAdmin from "./components/admin/product/ProductAdmin";
@@ -69,6 +70,7 @@ export default class App extends Component {
               <Route path='/sucess' component={OrderSucess}/>
               <Route path='/contactform' component={ContactForm}/>
               <Route path='/listorderbyuser' component={ListOrderByUser}/>
+              <Route path='/orderdetail/:id' component={ListOrderByUserDetail}/>
               <Route path='/admin_signin' component={SignIn}/>
               <Route path='/admin' component={Admin}/>
               <Route path='/admin_customer' component={CustomerAdmin}/>

@@ -51,7 +51,7 @@ export default class ListOrderByUser extends Component{
               <td>{index+1}</td>
               <td>{item.time}</td>
               <td>{item.total}</td>
-			  <td>{item.status}</td>
+              <td><span className="badge badge-dark">{item.status}</span></td>              
               <td className="visible-lg">{item.name}
               </td>
               <td>{item.phone}</td>
@@ -60,15 +60,9 @@ export default class ListOrderByUser extends Component{
 
               <td>
                 <div className="btn-group btn-group-xs">
-                  <button className="btn btn-default px-0" data-toggle="modal" data-target="#edit">
-                    <div className="fa fa-eye text-warning"></div>
-                  </button>
+                    <Link to={`/orderdetail/${item.id}`} className="fa fa-eye text-warning"></Link>
                 </div>
-                <div className="btn-group btn-group-xs">
-                  <button className="btn btn-default px-0" data-toggle="modal" data-target="#delete">
-                    <div className="fa fa-trash text-danger"></div>
-                  </button>
-                </div>
+                
               </td>
             </tr>
             )}
